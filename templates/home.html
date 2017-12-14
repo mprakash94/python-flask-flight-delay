@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>FlightApp</title>
+				<script type="text/javascript">
+			var mealsByCategory = {
+			    'Dallas/Fort Worth, TX': ["DFW"],
+			    'Detroit, MI': ["DTW"],
+				'Seattle, WA': ["SEA"],
+				'New York, NY':['JFK', 'LGA'],
+				'San Jose, CA': ["SJC"],
+				'Chicago, IL':['ORD', 'MDW'],
+				'Phoenix, AZ':["PHX"],
+				'St. Louis, MO':["STL"], 
+				'Los Angeles, CA':['LAX'],
+				'Orlando, FL':['MCO'],
+				'Denver, CO':["DEN"],
+				'Miami, FL':["MIA"],
+				'Houston, TX':['IAH', 'HOU', 'EFD'],
+				'Salt Lake City, UT':["SLC"],
+				'Tucson, AZ':["TUS"],
+				'Boston, MA':["BOS"],
+				'Fort Lauderdale, FL':["FLL"],
+				'San Francisco, CA':["SFO"],
+				'Kahului, HI':["OGG"],
+				'Tampa, FL':["TPA"],
+				'Santa Ana, CA':["SNA"],
+				'Oklahoma City, OK':["OKC"],
+				'Honolulu, HI':["HNL"],
+				'Philadelphia, PA':["PHL"],
+				'Raleigh/Durham, NC':["RDU"],
+				'Washington, DC':['DCA', 'IAD'],
+				'Richmond, VA':["RIC"],
+				'Atlanta, GA':["ATL"],
+				'Lubbock, TX':["LBB"],
+				'Charlotte, NC':["CLT"],
+				'El Paso, TX':['ELP'],
+				'Nashville, TN':['BNA'],
+				'Jackson, WY':["JAC"],
+       			'Sacramento, CA':['SMF'],
+ 				'Newark, NJ':['EWR'],
+	 			'Lihue, HI':['LIH'],
+       			'San Juan, PR':['SJU'],
+       			'Albuquerque, NM':['ABQ'],
+       			'Norfolk, VA':['ORF'],
+       			'Jacksonville, FL':['JAX'],
+       			'New Orleans, LA':['MSY'],
+       			'Kansas City, MO':['MCI'],
+       			'Gunnison, CO':['GUC'],
+       			'Indianapolis, IN':['IND'],
+       			'Portland, OR':['PDX'], 
+       			'Baltimore, MD':['BWI'],
+       			'Minneapolis, MN':['MSP'],
+       			'Milwaukee, WI':['MKE'],
+       			'Ontario, CA':['ONT'],
+       			'Fort Myers, FL':['RSW'],
+       			'Des Moines, IA':['DSM'],
+       			'Palm Springs, CA':['PSP'],
+       			'Eagle, CO':['EGE'],
+    			'West Palm Beach/Palm Beach, FL':['PBI'],
+       			'Louisville, KY':['SDF'],
+       			'Pittsburgh, PA':['PIT'],
+       			'Dayton, OH':['DAY'],
+    			'Christiansted, VI':['STX'],
+       			'Colorado Springs, CO':['COS'],
+       			'Columbus, OH':['CMH'],
+       			'Montrose/Delta, CO':['MTJ'],
+       			'Hayden, CO':['HDN'],
+       			'Hartford, CT':['BDL'],
+       			'Memphis, TN':['MEM'],
+       			'Cleveland, OH':['CLE'],
+       			'Oakland, CA':['OAK'], 
+       			'Spokane, WA':['GEG'],
+       			'Anchorage, AK':['ANC'],
+       			'Buffalo, NY':['BUF'],
+       			'Syracuse, NY':['SYR'],
+       			'Albany, NY':['ALB'],
+       			'Providence, RI':['PVD'],
+       			'Wilmington, NC':['ILM'],
+       			'Wichita, KS':['ICT'],
+       			'Portland, ME':['PWM'],
+       			'Greensboro/High Point, NC':['GSO'],
+      		 	'Charleston, SC':['CHS'],
+      		 	'Harrisburg, PA':['MDT'], 
+      		 	'Birmingham, AL':['BHM'],
+      		 	'Kodiak, AK':['ADQ'],
+       			'Barrow, AK':['BRW'],
+       			'Deadhorse, AK':['SCC'],
+       			'Juneau, AK':['JNU'],
+       			'Ketchikan, AK':['KTN'],
+       			'Yakutat, AK':['YAK'],
+       			'Cordova, AK':['CDV'],
+       			'Petersburg, AK':['PSG'],
+       			'Wrangell, AK':['WRG'],
+       			'Nome, AK':['OME'],
+       			'Kotzebue, AK':['OTZ'],
+       			'Burbank, CA':['BUR'],
+       			'Adak Island, AK':['ADK'],
+       			'Newburgh/Poughkeepsie, NY':['SWF'],
+       			'Long Beach, CA':['LGB'],
+       			'Ponce, PR':['PSE'],
+       			'Aguadilla, PR':['BQN'],
+       			'White Plains, NY':['HPN'],
+       			'Savannah, GA':['SAV'],
+       			'Sarasota/Bradenton, FL':['SRQ'],
+       			'Burlington, VT':['BTV'],
+       			'Worcester, MA':['ORH'],
+       			'Cincinnati, OH':['CVG'],
+       			'Bismarck/Mandan, ND':['BIS'],
+       			'Asheville, NC':['AVL'],
+       			'Grand Rapids, MI':['GRR'],
+       			'Flint, MI':['FNT'],
+       			'Myrtle Beach, SC':['MYR'],
+       			'Jackson/Vicksburg, MS':['JAN'],
+       			'Fargo, ND':['FAR'],
+       			'Pensacola, FL':['PNS'],
+       			'Augusta, GA':['AGS'],
+       			'Lexington, KY':['LEX'],
+       			'Dallas, TX':['DAL'],
+       			'Appleton, WI':['ATW'],
+       			'Gulfport/Biloxi, MS':['GPT'],
+       			'Melbourne, FL':['MLB'],
+       			'Bozeman, MT':['BZN'],
+       			'Charlottesville, VA':['CHO'],
+       			'Madison, WI':['MSN'],
+       			'Key West, FL':['EYW'],
+       			'Bristol/Johnson City/Kingsport, TN':['TRI'],
+       			'Lafayette, LA':['LFT'],
+       			'Roanoke, VA':['ROA'],
+       			'Panama City, FL':['ECP'],
+       			'Valparaiso, FL':['VPS'],
+       			'Fayetteville, AR':['XNA'],
+       			'Evansville, IN':['EVV'],
+       			'Scranton/Wilkes-Barre, PA':['AVP'],
+       			'Huntsville, AL':['HSV'],
+       			'Fayetteville, NC':['FAY'],
+       			'Knoxville, TN':['TYS'],
+       			'Tallahassee, FL':['TLH'],
+       			'Missoula, MT':['MSO'],
+       			'Trenton, NJ':['TTN'],
+       			'Newport News/Williamsburg, VA':['PHF'],
+       			'Sioux Falls, SD':['FSD'],
+       			'Latrobe, PA':['LBE'],
+       			'Bloomington/Normal, IL':['BMI'],
+       			'Charleston/Dunbar, WV':['CRW'],
+       			'Pago Pago, TT':['PPG'],
+       			'Niagara Falls, NY':['IAG'],
+       			'Waco, TX':['ACT'],
+       			'Shreveport, LA':['SHV'],
+       			'Fort Smith, AR':['FSM'],
+       			'Midland/Odessa, TX':['MAF'],
+       			'Santa Fe, NM':['SAF'],
+       			'Joplin, MO':['JLN'],
+       			'Laredo, TX':['LRD'],
+       			'Brownsville, TX':['BRO'],
+       			'Tyler, TX':['TYR'],
+       			'Grand Junction, CO':['GJT'],
+       			'Duluth, MN':['DLH'],
+       			'Santa Barbara, CA':['SBA'],
+       			'Aspen, CO':['ASE'],
+       			'Idaho Falls, ID':['IDA'],
+       			'Rapid City, SD':['RAP'],
+       			'Kalispell, MT':['FCA'],
+       			'Lincoln, NE':['LNK'],
+       			'Amarillo, TX':['AMA'],
+       			'Bakersfield, CA':['BFL'], 
+       			'Moline, IL':['MLI'],
+       			'La Crosse, WI':['LSE'],
+       			'South Bend, IN':['SBN'],
+       			'Pasco/Kennewick/Richland, WA':['PSC'], 
+       			'Flagstaff, AZ':['FLG'],
+       			'Williston, ND':['ISN'],
+				'Grand Forks, ND':['GFK'],
+				'Great Falls, MT':['GTF'],
+				'Monterey, CA':['MRY'],
+				'Saginaw/Bay City/Midland, MI':['MBS'],
+				'Sun Valley/Hailey/Ketchum, ID':['SUN'],
+				'Twin Falls, ID':['TWF'],
+				'Springfield, MO':['SGF'],
+				'Casper, WY':['CPR'],
+				'Baton Rouge, LA':['BTR'],
+				'Plattsburgh, NY':['PBG'],
+				'Corpus Christi, TX':['CRP'],
+				'Cedar Rapids/Iowa City, IA':['CID'],
+				'San Luis Obispo, CA':['SBP'],
+				'Rock Springs, WY':['RKS'], 
+				'Hancock/Houghton, MI':['CMX'], 
+				'Mammoth Lakes, CA':['MMH'],
+				'Pellston, MI':['PLN'], 
+				'Elko, NV':['EKO'],
+				'Gillette, WY':['GCC'],
+				'Medford, OR':['MFR'],
+				'Santa Maria, CA':['SMX'],
+				'Eugene, OR':['EUG'],
+				'Rochester, MN':['RST'],
+				'Traverse City, MI':['TVC'],
+				'Springfield, IL':['SPI'],
+				'St. George, UT':['SGU'],
+				'Helena, MT':['HLN'], 
+				'Bend/Redmond, OR':['RDM'], 
+				'Arcata/Eureka, CA':['ACV'],
+				'Eau Claire, WI':['EAU'], 
+				'Devils Lake, ND':['DVL'], 
+				'Jamestown, ND':['JMS'],
+				'Muskegon, MI':['MKG'], 
+				'Hays, KS':['HYS'], 
+				'Cody, WY':['COD'], 
+				'Ithaca/Cortland, NY':['ITH'],
+				'Alpena, MI':['APN'], 
+				'Escanaba, MI':['ESC'], 
+				'Bemidji, MN':['BJI'], 
+				'Marquette, MI':['MQT'],
+				'Binghamton, NY':['BGM'],
+				'Rhinelander, WI':['RHI'], 
+				'Lewiston, ID':['LWS'],
+				'Iron Mountain/Kingsfd, MI':['IMT'], 
+				'Brainerd, MN':['BRD'],
+				'International Falls, MN':['INL'], 
+				'Pocatello, ID':['PIH'], 
+				'Guam, TT':['GUM'],
+				'Hibbing, MN':['HIB'],
+				'Butte, MT':['BTM'], 
+				'Cedar City, UT':['CDC'],
+				'North Bend/Coos Bay, OR':['OTH'],
+				'Redding, CA':['RDD'],
+				'Harlingen/San Benito, TX':['HRL'], 
+				'Islip, NY':['ISP'], 
+				'Manchester, NH':['MHT'],
+				'Gainesville, FL':['GNV'], 
+				'Meridian, MS':['MEI'], 
+				'Hattiesburg/Laurel, MS':['PIB'],
+				'Beaumont/Port Arthur, TX':['BPT'], 
+				'Alexandria, LA':['Origin'], 
+				'Texarkana, AR':['TXK'],
+				'Roswell, NM':['ROW'], 
+				'College Station/Bryan, TX':['CLL'], 
+				'Hobbs, NM':['HOB'],
+				'Lake Charles, LA':['LCH'], 
+				'Jacksonville/Camp Lejeune, NC':['OAJ'],
+				'Elmira/Corning, NY':['ELM'], 
+				'Valdosta, GA':['VLD'], 
+				'Montgomery, AL':['MGM'],
+				'Bangor, ME':['BGR'], 
+				'Columbus, MS':['GTR'], 
+				'Columbus, GA':['CSG'], 
+				'Brunswick, GA':['BQK'],
+				'Dothan, AL':['DHN'], 
+				'New Bern/Morehead/Beaufort, NC':['EWN'], 
+				'Albany, GA':['ABY'],
+				'Wichita Falls, TX':['SPS'], 
+				'San Angelo, TX':['SJT'], 
+				'Longview, TX':['GGG'],
+				'Nantucket, MA':['ACK'], 
+				"Martha's Vineyard, MA":['MVY'], 
+				'Hyannis, MA':['HYA'],
+				'Gustavus, AK':['GST'], 
+				'King Salmon, AK':['AKN'], 
+				'Dillingham, AK':['DLG'],
+				'Garden City, KS':['GCK'], 
+				'Manhattan/Ft. Riley, KS':['MHK'], 
+				'Abilene, TX':['ABI'],
+				'Grand Island, NE':['GRI'], 
+				'Punta Gorda, FL':['PGD'], 
+				'Saipan, TT':['SPN']
+			}
+
+		    function changecat(value) {
+		        if (value.length == 0) document.getElementById("category").innerHTML = "<option></option>";
+		        else {
+		            var catOptions = "";
+		            for (categoryId in mealsByCategory[value]) {
+		                catOptions += "<option>" + mealsByCategory[value][categoryId] + "</option>";
+		            }
+		            document.getElementById("category").innerHTML = catOptions;
+		        }
+		    }
+		       function changecattwo(value) {
+		        if (value.length == 0) document.getElementById("destin").innerHTML = "<option></option>";
+		        else {
+		            var catOptions = "";
+		            for (categoryId in mealsByCategory[value]) {
+		            	a = mealsByCategory[value][categoryId];
+		                catOptions += '<option value="'+a+'" >' + mealsByCategory[value][categoryId] + '</option>';
+		                
+		            }
+		            document.getElementById("destin").innerHTML = catOptions;
+		        }
+		        
+		    }
+		</script>
+		<style>
+		.form-control{
+			    width: 50%;
+			    min-width: 50px;
+			}
+
+			input[type=text]{
+			    width: 15%;
+			    padding: 12px 20px;
+			    margin: 8px 0;
+			    display: inline-block;
+			    border: 1px solid #ccc;
+			    border-radius: 4px;
+			    box-sizing: border-box;
+			}
+			
+			input[type=submit] {
+			    width: 100%;
+			    background-color: #4CAF50;
+			    color: white;
+			    padding: 14px 20px;
+			    margin: 8px 0;
+			    border: none;
+			    border-radius: 4px;
+			    cursor: pointer;
+			}
+
+			input[type=submit]:hover {
+			    background-color: #45a049;
+			}
+
+			div {
+			    border-radius: 5px;
+			    background-color: #f2f2f2;
+			    padding: 20px;
+			}
+		</style>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+
+	</head>
+	<body style="margin: 2%;">
+		<h1 style="text-align: center;">Flight Delay Prediction</h1>
+		<form method="POST" action="/result">
+			<div style="margin-left: 30%;margin-right: 30%">
+			Airline: <input type="text" name="airlines" style="width: 25%"><br/><br/>
+			Day: <input type="text" name="day">	
+			Month: <input type="text" name="month">
+			Year: <input type="text" name="year"><br/><br/>
+			Origin City: <select class="form-control" name="calculations" style="max-width:20%;" onChange="changecat(this.value);">
+				<option value="">Select</option>
+			    {% for calc in calculations %}
+			        <option value="{{ calc }}">{{ calc }}</option>
+			    {% endfor %}
+			</select>
+			<select class="form-control" name="category" id="category" style="max-width:20%;">
+			    <option value="" disabled selected>Select</option>
+			</select>
+			Origin Airport:(Type in the selected airport): <input type="text" name="oair">	<br/><br/><br/><br/>
+			Destination City: <select class="form-control" name="calculations" style="max-width:20%;" onChange="changecattwo(this.value);">
+				<option value="">Select</option>
+			    {% for calc in calculations %}
+			        <option value="{{ calc }}">{{ calc }}</option>
+			    {% endfor %}
+			</select>
+			<select class="form-control" name="destin" id="destin" style="max-width:20%;" onloadedata="filltext();">
+			    <option disabled selected>Select</option>
+			</select>
+			Destination Airport:(Type in the selected airport): <input type="text" name="dair">	<br/><br/>
+			Departure time:
+			<input type="text" name="dephour" ><b>:</b><input type="text" name="depmin">
+			Arrival Time:
+			<input type="text" name="arrhr"><b>:</b><input type="text" name="arrmin"><br/><br/>
+		</div>
+          
+            <input type="submit">   
+       	</form>
+       	<h2> The delay time is: {{delaytime}} </h2>
+       	<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"></script>
+	</body>
+</html>
